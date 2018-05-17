@@ -115,24 +115,6 @@ namespace minesweeper
                 }
             }
         }
-        bool endgame()
-        {
-            bool lose = false;
-            for (int i1 = 0; i1 < field.GetLength(0); i1++)
-            {
-                for (int j1 = 0; j1 < field.GetLength(1); j1++)
-                {
-                    if (field[i1, j1] == 9)
-                    {
-                       lose = true;
-                        break;
-                    }
-                }
-                if (lose == true)
-                break;
-            }
-            return lose;
-        }
         public int getCell(int i, int j)
         {
             return field[i, j];

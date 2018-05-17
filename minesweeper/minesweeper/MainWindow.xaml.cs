@@ -87,23 +87,32 @@ namespace minesweeper
 
             if (pl.getCell(n % int.Parse(tb2.Text) , n / int.Parse(tb1.Text)) == 9)
             {
-                //создание и инициализация переменной для хранения изображения мины
-                Image img = new Image();
-                //загрузка изображения mine.jpg из папки imgs
-                img.Source = mine;
+                Button[] btns = new Button[pole.Children.Count];
+                pole.Children.CopyTo(btns, 0);
 
-                //создание глобальной переменной для отображения изображения мины
-                StackPanel minePnl;
+                for (int i = 0; i < pole.Children.Count; i++)
+                {
+                    if (pl.getCell(i % int.Parse(tb2.Text), i / int.Parse(tb1.Text)) == 9)
+                    {
+                        //создание и инициализация переменной для хранения изображения мины
+                        Image img = new Image();
+                        //загрузка изображения mine.jpg из папки imgs
+                        img.Source = mine;
 
-                //инициализация и установка ориентации, можно вызвать в методе инициализации формы
-                minePnl = new StackPanel();
-                // minePnl.Orientation = Orientation.Horizontal;
-                //установка толщины границы объекта
-                minePnl.Margin = new Thickness(1);
-                //добавление в объект изображения
-                minePnl.Children.Add(img);
-                ((Button)sender).Content = minePnl;
-                pl.endgame();
+                        //создание глобальной переменной для отображения изображения мины
+                        StackPanel minePnl;
+
+                        //инициализация и установка ориентации, можно вызвать в методе инициализации формы
+                        minePnl = new StackPanel();
+                        // minePnl.Orientation = Orientation.Horizontal;
+                        //установка толщины границы объекта
+                        minePnl.Margin = new Thickness(1);
+                        //добавление в объект изображения
+                        minePnl.Children.Add(img);
+                        btns[i].Content = minePnl;
+                    }
+                }
+                pole.IsEnabled = false;
             }
             else
             {
