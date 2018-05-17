@@ -34,9 +34,9 @@ namespace minesweeper
         {
 
             pole.Children.Clear();
-
             pl.init( int.Parse(tb2.Text), int.Parse(tb1.Text) );
             pl.plant_mines(int.Parse(tb3.Text));
+            pl.calculate();
 
             //указыается количество строк и столбцов в сетке
             pole.Rows = int.Parse(tb1.Text);
@@ -103,6 +103,7 @@ namespace minesweeper
                 //добавление в объект изображения
                 minePnl.Children.Add(img);
                 ((Button)sender).Content = minePnl;
+                pl.endgame();
             }
             else
             {
