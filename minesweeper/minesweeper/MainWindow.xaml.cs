@@ -22,6 +22,7 @@ namespace minesweeper
     {
         BitmapImage mine = new BitmapImage(new Uri(@"pack://application:,,,/img/x.jpg", UriKind.Absolute));
         pole pl = new pole();
+        int score;
 
         public MainWindow()
         {
@@ -34,9 +35,10 @@ namespace minesweeper
         {
 
             pole.Children.Clear();
-            pl.init( int.Parse(tb2.Text), int.Parse(tb1.Text) );
+            pl.init( int.Parse(tb1.Text), int.Parse(tb2.Text) );
             pl.plant_mines(int.Parse(tb3.Text));
             pl.calculate();
+            pole.IsEnabled = true;
 
             //указыается количество строк и столбцов в сетке
             pole.Rows = int.Parse(tb1.Text);
@@ -84,7 +86,6 @@ namespace minesweeper
 
 
 
-
             if (pl.getCell(n % int.Parse(tb2.Text) , n / int.Parse(tb1.Text)) == 9)
             {
                 Button[] btns = new Button[pole.Children.Count];
@@ -112,7 +113,9 @@ namespace minesweeper
                         btns[i].Content = minePnl;
                     }
                 }
+                MessageBox.Show("YOU SUCK!");
                 pole.IsEnabled = false;
+                score = 0;
             }
             else
             {
@@ -122,17 +125,38 @@ namespace minesweeper
                 ((Button)sender).FontSize = 23;
                 ///запись в нажатую кнопку её номера
                 ((Button)sender).Content = pl.getCell(n % int.Parse(tb2.Text), n / int.Parse(tb1.Text));
+                score++;
+                if (score == int.Parse(tb2.Text) * int.Parse(tb1.Text) - int.Parse(tb3.Text))
+                {
+                    MessageBox.Show("YOU WIN!");
+                    pole.IsEnabled = false;
+                }
             }
         }
 
-        private void Load_Click(object sender, RoutedEventArgs e)
-        {
+//        private void Load_Click(object sender, RoutedEventArgs e)
+//        {
 
-        }
+//        }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-    }
-}
+//        private void Save_Click(object sender, RoutedEventArgs e)
+//        {
+//                //создание диалога
+//                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+//                //настройка параметров диалога
+//                dlg.FileName = "Document"; // Default file name
+//                dlg.DefaultExt = ".txt"; // Default file extension
+//                dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+//                //вызов диалога
+//                dlg.ShowDialog();
+//                //получение выбранного имени файла
+//                //открытие файла test.txt для записи
+//                using (StreamWriter outputFile = new StreamWriter(mydocpath + @"\test.txt"))
+//                {
+//                    //lines – массив строк
+//                    foreach (string line in lines)
+//                        outputFile.WriteLine(line);
+//                }
+//        }
+//    }
+//}
