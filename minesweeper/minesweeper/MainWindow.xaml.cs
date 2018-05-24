@@ -124,5 +124,15 @@ namespace minesweeper
                 ((Button)sender).Content = pl.getCell(n % int.Parse(tb2.Text), n / int.Parse(tb1.Text));
             }
         }
+
+        private void Load_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
