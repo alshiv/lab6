@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace minesweeper
 {
-    class pole
+    class cpole
     {
-        int[,] field;
+        public int[,] field;
 
         //создание массива m на n
         public void init(int i, int j)
@@ -16,7 +16,7 @@ namespace minesweeper
             field = new int[i, j];
         }
 
-        bool isBroken (int x, int y)
+        public bool isBroken (int x, int y)
         {
             bool res = true;
 

@@ -21,7 +21,7 @@ namespace minesweeper
     public partial class MainWindow : Window
     {
         BitmapImage mine = new BitmapImage(new Uri(@"pack://application:,,,/img/x.jpg", UriKind.Absolute));
-        pole pl = new pole();
+        cpole pl = new cpole();
         int score;
 
         public MainWindow()
@@ -35,7 +35,7 @@ namespace minesweeper
         {
 
             pole.Children.Clear();
-            pl.init( int.Parse(tb1.Text), int.Parse(tb2.Text) );
+            pl.init(int.Parse(tb1.Text), int.Parse(tb2.Text));
             pl.plant_mines(int.Parse(tb3.Text));
             pl.calculate();
             pole.IsEnabled = true;
@@ -86,7 +86,7 @@ namespace minesweeper
 
 
 
-            if (pl.getCell(n % int.Parse(tb2.Text) , n / int.Parse(tb1.Text)) == 9)
+            if (pl.getCell(n % int.Parse(tb2.Text), n / int.Parse(tb1.Text)) == 9)
             {
                 Button[] btns = new Button[pole.Children.Count];
                 pole.Children.CopyTo(btns, 0);
@@ -133,30 +133,5 @@ namespace minesweeper
                 }
             }
         }
-
-//        private void Load_Click(object sender, RoutedEventArgs e)
-//        {
-
-//        }
-
-//        private void Save_Click(object sender, RoutedEventArgs e)
-//        {
-//                //создание диалога
-//                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-//                //настройка параметров диалога
-//                dlg.FileName = "Document"; // Default file name
-//                dlg.DefaultExt = ".txt"; // Default file extension
-//                dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
-//                //вызов диалога
-//                dlg.ShowDialog();
-//                //получение выбранного имени файла
-//                //открытие файла test.txt для записи
-//                using (StreamWriter outputFile = new StreamWriter(mydocpath + @"\test.txt"))
-//                {
-//                    //lines – массив строк
-//                    foreach (string line in lines)
-//                        outputFile.WriteLine(line);
-//                }
-//        }
-//    }
-//}
+    }
+}
